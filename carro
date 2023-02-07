@@ -1,0 +1,109 @@
+float ang;
+float x,y;
+float vel;
+
+void setup(){
+size(1300,500);
+x=150;
+y=350;
+vel=5;
+
+}
+
+
+void draw(){
+  background(255);
+  //Dibujo el pavimento.
+  stroke(0); //bordes color negro.
+  strokeWeight(2);//grosor de borde 
+  fill(#D8D2D2);//color gris para el pavimento.
+  rect(0,350,width,150);//dibujo la calle.
+  
+  carro();
+  x+=vel;
+  ang+=(vel+2);
+  
+ 
+  
+  
+}
+
+void carro(){
+//chasis
+  beginShape();
+     fill(#EA899A); //color rosa para el carro.
+    /*
+     vertex(150,350);//1  
+     vertex(150,315);//2
+     vertex(200,315);//3
+     vertex(225,270);//4
+     vertex(300,270);//5
+     vertex(375,315);//6
+     vertex(410,315);//7
+     vertex(410,350);//8
+     vertex(150,350);//9 
+     */
+      vertex(x, y);//1  
+      vertex(x, y-35);//2
+      vertex(x+50, y-35);//3
+      vertex(x+75, y-80);//4
+      vertex(x+150, y-80);//5
+      vertex(x+225, y- 35);//6
+      vertex(x+260, y-35);//7
+      vertex(x+260, y);//8
+      vertex(x, y);//9
+  endShape();
+
+   //Ventanas.
+   //Ventana trasera.
+   beginShape();
+      fill(#EDFAF9); 
+      vertex(x+59, y-35);//1
+      vertex(x+82, y-72);//2
+      vertex(x+105, y-72);//3
+      vertex(x+105, y-35);//4
+      vertex(x+59, y-35);//5
+   endShape();
+   
+   //Ventana delantera
+   beginShape();
+      vertex(x+130, y-72);//1
+      vertex(x+150, y-72);//2
+      vertex(x+210, y-35);//3
+      vertex(x+130, y-35);//4
+      vertex(x+130, y-72);//5
+   endShape();
+   
+   //separador
+   line(x+115, y-80, x+115, y);
+   
+   //Llantas
+   //llanta trasera
+   pushMatrix();
+      translate(x+60, y);
+        stroke(0);
+        strokeWeight(3);
+        fill(#3B3B3B);
+        circle(0,0,40);
+        fill(#D7DEDD);
+        circle(0,0,20);
+        stroke(255);   
+        rotate(radians(ang));
+           line(0,0,20,0);
+   popMatrix();
+   
+    //llanta delantera
+   pushMatrix();
+     translate(x+215,y);
+        stroke(0);
+        strokeWeight(3);
+        fill(#3B3B3B);
+        circle(0,0,40);
+        fill(#D7DEDD);
+        circle(0,0,20);
+        stroke(255); 
+        rotate(radians(ang));
+           line(0,0,20,0);
+   popMatrix();
+
+}
